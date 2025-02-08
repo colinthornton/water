@@ -97,6 +97,10 @@ export default defineConfig({
 
   assetsBundler: false,
   hooks: {
-    onBuildStarting: [() => import('@adonisjs/vite/build_hook')],
+    onBuildStarting: [
+      () => import('@adonisjs/vite/build_hook'),
+      () => import('./hooks/copy_shoelace_assets.js'),
+    ],
+    onDevServerStarted: [() => import('./hooks/copy_shoelace_assets.js')],
   },
 })

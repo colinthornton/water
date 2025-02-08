@@ -7,7 +7,15 @@ import adonisjs from '@adonisjs/vite/client'
 export default defineConfig({
   plugins: [
     inertia({ ssr: { enabled: false } }),
-    vue(),
+    vue({
+      template: {
+        compilerOptions: {
+          isCustomElement: (tag) => {
+            return tag.startsWith('sl-')
+          },
+        },
+      },
+    }),
     adonisjs({ entrypoints: ['inertia/app/app.ts'], reload: ['resources/views/**/*.edge'] }),
   ],
 

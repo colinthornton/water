@@ -1,15 +1,17 @@
 /// <reference path="../../adonisrc.ts" />
 /// <reference path="../../config/inertia.ts" />
 
-import '../css/app.css'
 import { createApp, h } from 'vue'
 import type { DefineComponent } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
 import { resolvePageComponent } from '@adonisjs/inertia/helpers'
 
-createInertiaApp({
-  progress: { color: '#5468FF' },
+import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path.js'
+import '@shoelace-style/shoelace/dist/themes/dark.css'
 
+setBasePath('/shoelace/assets')
+
+createInertiaApp({
   title: (title) => (title ? `${title} - Water` : 'Water'),
 
   resolve: (name) => {

@@ -23,3 +23,6 @@ yarn-error.log
 
 # Platform specific
 .DS_Store
+
+# Shoelace assets copied during build
+public/shoelace
