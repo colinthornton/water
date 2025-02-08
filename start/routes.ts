@@ -8,4 +8,9 @@
 */
 
 import router from '@adonisjs/core/services/router'
+
+const UsersController = () => import('#controllers/users_controller')
+
 router.on('/').renderInertia('home')
+
+router.get('users', [UsersController, 'index'])
