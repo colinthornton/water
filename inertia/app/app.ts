@@ -5,7 +5,7 @@ import { createApp, h } from 'vue'
 import type { DefineComponent } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
 import { resolvePageComponent } from '@adonisjs/inertia/helpers'
-
+import '../css/global.css'
 import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path.js'
 import '@shoelace-style/shoelace/dist/themes/dark.css'
 
