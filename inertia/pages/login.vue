@@ -6,15 +6,16 @@ import '@shoelace-style/shoelace/dist/components/button/button.js'
 import '@shoelace-style/shoelace/dist/components/tab-group/tab-group.js'
 import '@shoelace-style/shoelace/dist/components/tab/tab.js'
 import '@shoelace-style/shoelace/dist/components/tab-panel/tab-panel.js'
+import { sign } from 'crypto'
 
 const loginForm = useForm({
-  email: '',
+  username: '',
   password: '',
   remember: false,
 })
 
 const signupForm = useForm({
-  email: '',
+  username: '',
   password: '',
   password_confirmation: '',
 })
@@ -34,13 +35,13 @@ function clearPasswordConfirmation() {
     <sl-tab-panel name="login">
       <form @submit.prevent="loginForm.post('login')">
         <sl-input
-          type="email"
+          type="text"
           required
           maxlength="254"
-          label="Email"
-          :help-text="loginForm.errors.email"
-          :value="loginForm.email"
-          @input="loginForm.email = $event.target.value"
+          label="Username"
+          :help-text="loginForm.errors.username"
+          :value="loginForm.username"
+          @input="loginForm.username = $event.target.value"
         ></sl-input>
         <br />
         <sl-input
@@ -72,13 +73,13 @@ function clearPasswordConfirmation() {
         "
       >
         <sl-input
-          type="email"
+          type="text"
           required
           maxlength="254"
-          label="Email"
-          :help-text="signupForm.errors.email"
-          :value="signupForm.email"
-          @input="signupForm.email = $event.target.value"
+          label="Username"
+          :help-text="signupForm.errors.username"
+          :value="signupForm.username"
+          @input="signupForm.username = $event.target.value"
         ></sl-input>
         <br />
         <sl-input

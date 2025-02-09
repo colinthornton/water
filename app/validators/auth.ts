@@ -2,13 +2,12 @@ import vine from '@vinejs/vine'
 
 export const signupValidator = vine.compile(
   vine.object({
-    email: vine
+    username: vine
       .string()
       .trim()
-      .email()
-      .maxLength(254)
+      .minLength(1)
       .unique(async (db, value) => {
-        const user = await db.from('users').where('email', value).first()
+        const user = await db.from('users').where('username', value).first()
         return !user
       }),
     password: vine.string().minLength(7).confirmed(),
@@ -17,7 +16,7 @@ export const signupValidator = vine.compile(
 
 export const loginValidator = vine.compile(
   vine.object({
-    email: vine.string().trim().email().maxLength(254),
+    username: vine.string().trim().minLength(1),
     password: vine.string().minLength(7),
     remember: vine.boolean(),
   })
