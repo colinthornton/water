@@ -21,9 +21,10 @@ RUN node ace build
 
 # Production stage
 FROM base
+ARG PORT
 ENV NODE_ENV=production
 WORKDIR /app
 COPY --from=production-deps /app/node_modules /app/node_modules
 COPY --from=build /app/build /app
-EXPOSE 8080
+EXPOSE $PORT
 CMD ["node", "./bin/server.js"]
