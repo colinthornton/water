@@ -26,3 +26,5 @@ router
     router.post('logout', [AuthController, 'logout'])
   })
   .use(middleware.auth())
+
+router.get('health', () => 'OK')
