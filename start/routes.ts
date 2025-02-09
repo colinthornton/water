@@ -16,6 +16,7 @@ router
   .group(() => {
     router.on('login').renderInertia('login')
     router.post('login', [AuthController, 'login'])
+    router.post('signup', [AuthController, 'signup'])
   })
   .use(middleware.guest())
 
