@@ -10,21 +10,25 @@
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
 
-const AuthController = () => import('#controllers/auth_controller')
+const AppController = () => import('#controllers/app_controller')
+const GulpController = () => import('#controllers/gulp_controller')
+const SessionController = () => import('#controllers/session_controller')
+const UserController = () => import('#controllers/user_controller')
+
+router.get('health', () => 'OK')
 
 router
   .group(() => {
-    router.on('login').renderInertia('login')
-    router.post('login', [AuthController, 'login'])
-    router.post('signup', [AuthController, 'signup'])
+    router.get('login', [SessionController, 'create'])
+    router.post('login', [SessionController, 'store'])
+    router.post('signup', [UserController, 'store'])
   })
   .use(middleware.guest())
 
 router
   .group(() => {
-    router.on('/').renderInertia('home')
-    router.post('logout', [AuthController, 'logout'])
+    router.post('logout', [SessionController, 'destroy'])
+    router.post('gulps', [GulpController, 'store'])
+    router.get('/', [AppController, 'home'])
   })
   .use(middleware.auth())
-
-router.get('health', () => 'OK')

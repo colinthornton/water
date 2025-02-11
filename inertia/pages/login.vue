@@ -6,7 +6,6 @@ import '@shoelace-style/shoelace/dist/components/button/button.js'
 import '@shoelace-style/shoelace/dist/components/tab-group/tab-group.js'
 import '@shoelace-style/shoelace/dist/components/tab/tab.js'
 import '@shoelace-style/shoelace/dist/components/tab-panel/tab-panel.js'
-import { sign } from 'crypto'
 
 const loginForm = useForm({
   username: '',
@@ -18,6 +17,7 @@ const signupForm = useForm({
   username: '',
   password: '',
   password_confirmation: '',
+  timezone: new Intl.DateTimeFormat().resolvedOptions().timeZone,
 })
 
 function clearPasswordConfirmation() {
@@ -36,6 +36,7 @@ function clearPasswordConfirmation() {
       <form @submit.prevent="loginForm.post('login')">
         <sl-input
           type="text"
+          autocomplete="username"
           required
           maxlength="254"
           label="Username"
@@ -46,6 +47,7 @@ function clearPasswordConfirmation() {
         <br />
         <sl-input
           type="password"
+          autocomplete="current-password"
           required
           minlength="7"
           password-toggle
@@ -74,6 +76,7 @@ function clearPasswordConfirmation() {
       >
         <sl-input
           type="text"
+          autocomplete="username"
           required
           maxlength="254"
           label="Username"
@@ -84,6 +87,7 @@ function clearPasswordConfirmation() {
         <br />
         <sl-input
           type="password"
+          autocomplete="new-password"
           required
           minlength="7"
           password-toggle
@@ -95,6 +99,7 @@ function clearPasswordConfirmation() {
         <br />
         <sl-input
           type="password"
+          autocomplete="new-password"
           required
           minlength="7"
           label="Confirm Password"
